@@ -1,0 +1,35 @@
+# What is a Reproducible Analytical Pipeline (RAP)?
+
+## In one minute
+
+A Reproducible Analytical Pipeline, or RAP, is an automated process for producing statistics or analysis.
+
+A RAP brings together:
+
+- data;
+- code;
+- quality checks;
+- documentation; and
+- outputs.
+
+The aim is to create a process that is reproducible, auditable, efficient and easy to quality assure.
+
+::: {.callout-important}
+## The core idea
+
+A RAP replaces repeated manual activities with a process defined in code.
+
+The code records what the process does. Version control records how the process has changes. Automated checks help people confirm that the process and its outputs are working as expected.
+:::
+
+## From data to a statistical output
+
+A RAP is a sequence of steps that turns source data into a statistics product.
+
+```{mermaid}
+flowchart LR
+  A["Source data"] --> B["Validate"]
+  B --> C["Clean and transform"]
+  C --> D["Quality assure"]
+  D --> E["Disseminate"]
+```

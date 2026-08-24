@@ -1,0 +1,35 @@
+[
+  {
+    "objectID": "01-understand/what-is-rap.html",
+    "href": "01-understand/what-is-rap.html",
+    "title": "2  What is a Reproducible Analytical Pipeline (RAP)?",
+    "section": "",
+    "text": "2.1 In one minute\nA Reproducible Analytical Pipeline, or RAP, is an automated process for producing statistics or analysis.\nA RAP brings together:\nThe aim is to create a process that is reproducible, auditable, efficient and easy to quality assure.",
+    "crumbs": [
+      "Understand Enhanced RAP",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>What is a Reproducible Analytical Pipeline (RAP)?</span>"
+    ]
+  },
+  {
+    "objectID": "01-understand/what-is-rap.html#in-one-minute",
+    "href": "01-understand/what-is-rap.html#in-one-minute",
+    "title": "2  What is a Reproducible Analytical Pipeline (RAP)?",
+    "section": "",
+    "text": "data;\ncode;\nquality checks;\ndocumentation; and\noutputs.\n\n\n\n\n\n\n\n\nImportantThe core idea\n\n\n\nA RAP replaces repeated manual activities with a process defined in code.\nThe code records what the process does. Version control records how the process has changes. Automated checks help people confirm that the process and its outputs are working as expected.",
+    "crumbs": [
+      "Understand Enhanced RAP",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>What is a Reproducible Analytical Pipeline (RAP)?</span>"
+    ]
+  },
+  {
+    "objectID": "01-understand/what-is-rap.html#from-data-to-a-statistical-output",
+    "href": "01-understand/what-is-rap.html#from-data-to-a-statistical-output",
+    "title": "2  What is a Reproducible Analytical Pipeline (RAP)?",
+    "section": "2.2 From data to a statistical output",
+    "text": "2.2 From data to a statistical output\nA RAP is a sequence of steps that turns source data into a statistics product.\n\n\n\n\n\nflowchart LR\n  A[\"Source data\"] --&gt; B[\"Validate\"]\n  B --&gt; C[\"Clean and transform\"]\n  C --&gt; D[\"Quality assure\"]\n  D --&gt; E[\"Disseminate\"]",
+    "crumbs": [
+      "Understand Enhanced RAP",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>What is a Reproducible Analytical Pipeline (RAP)?</span>"
+    ]
+  }
+]

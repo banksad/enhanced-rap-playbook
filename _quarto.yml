@@ -1,0 +1,25 @@
+project:
+  type: book
+  output-dir: _site
+
+book:
+  title: "Enhanced Reproducible Analytical Pipelines Playbook"
+  subtitle: "A practical guide to building reliable, reproducible and connected statistical production pipelines"
+
+  chapters:
+    - index.md
+  
+    - part: "Understand Enhanced RAP"
+      chapters:
+        - 01-understand/what-is-rap.qmd
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    number-selections: true
+    code-copy: true
+    code-overflow: wrap
+
+execute:
+  freeze: auto
