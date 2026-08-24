@@ -12,24 +12,223 @@ A RAP brings together:
 - documentation; and
 - outputs.
 
-The aim is to create a process that is reproducible, auditable, efficient and easy to quality assure.
+It uses practises from software engineering to make an analytical process reproducible, auditable, efficient and easy to quality assure.
 
 ::: {.callout-important}
 ## The core idea
 
-A RAP replaces repeated manual activities with a process defined in code.
+A RAP replaces repeated manual activities with a process that is defined in code.
 
-The code records what the process does. Version control records how the process has changes. Automated checks help people confirm that the process and its outputs are working as expected.
+The code records what the process does. Version control records how the process has changed. Automated checks help people confirm that the process and its outputs are working as expected.
 :::
 
 ## From data to a statistical output
 
-A RAP is a sequence of steps that turns source data into a statistics product.
+A RAP is a sequence of connected steps that turns source data into a statistical or analytical product.
 
 ```{mermaid}
 flowchart LR
-  A["Source data"] --> B["Validate"]
-  B --> C["Clean and transform"]
-  C --> D["Quality assure"]
-  D --> E["Disseminate"]
+A["Source data"] --> B["Validate"]
+B --> C["Clean and transform"]
+C --> D["Analyse"]
+D --> E["Quality assure"]
+E --> F["Produce outputs"]
+ 
+classDef input fill:#e8f1f5,stroke:#003c57,color:#222222
+classDef process fill:#ffffff,stroke:#206095,color:#222222
+classDef output fill:#e5f5f5,stroke:#00a3a6,color:#222222
+ 
+class A input
+class B,C,D,E process
+class F output
 ```
+
+The outputs of a RAP could be:
+
+- a set of official statistics;
+- a dataset;
+- a set of tables;
+- a set of charts;
+- an interactive dashboard;
+- a report; 
+- a machine-readable output for another system.
+
+A RAP can support one-off analysis, a regular publication, or part of a statistical production system.
+
+## RAP and the production of statistics
+
+The [Generic Statistical Business Process Model version 5.2](https://unece.github.io/GSBPM-5.2/#process-phase), or GSBPM, provides a common framework for describing how official statistics are produced.
+
+GSBPM describes eight broad phases:
+ 
+1. Specify needs.
+2. Design.
+3. Build.
+4. Collect.
+5. Process.
+6. Analyse.
+7. Disseminate.
+8. Evaluate.
+
+A RAP can automate and connect activities within one phase or across several phases.
+
+For example, a production RAP could:
+ 
+- receive data from an approved source;
+- check that the data have the expected structure;
+- clean and transform the data;
+- produce statistical estimates;
+- apply automated quality checks;
+- create publication tables and datasets; and
+- prepare outputs for dissemination.
+
+```{mermaid}
+flowchart LR
+A["Specify needs"] --> B["Design"]
+B --> C["Build"]
+C --> D["Collect"]
+D --> E["Process"]
+E --> F["Analyse"]
+F --> G["Disseminate"]
+G --> H["Evaluate"]
+H -. "Learn and improve" .-> A
+ 
+classDef context fill:#f5f5f5,stroke:#414042,color:#222222
+classDef rap fill:#e5f5f5,stroke:#00a3a6,stroke-width:3px,color:#222222
+ 
+class A,B,C,H context
+class D,E,F,G rap
+```
+
+This example highlights Collect, Process, Analyse and Disseminate. This is only an illustration. The boundary of a RAP depends on the statistical process.
+
+::: {.callout-note}
+## GSBPM is not a fixed sequence
+ 
+GSBPM is a reference model. It does not require every activity to happen once or in a fixed order.
+ 
+Activities can happen in parallel. A team can repeat an activity, return to an earlier activity, or omit an activity when it is not needed.
+ 
+A RAP must support the statistics production process. A team should not change their business process just to make it fit a linear pipeline.
+:::
+
+The GSBPM also identifies activities that apply across statistical production. These include quality management, metadata management, data management and knowledge management.
+
+## Why use RAP?
+
+The production of statistics can contain activities including:
+
+- copying and pasting data;
+- moving files between folders;
+- manipulating spreadsheets;
+- running scripts in a specific order;
+- changing settings by hand;
+- producing tables and charts;
+- completing a set of quality and data checks;
+- keeping local records of assumptions, decisions and information about the data and methodology used to produce the statistics;
+
+These types of activities can make the statistics process difficult to repeat, check and maintain. They can also make the process dependent on the knowledge of an individual.
+
+By contrast, a RAP defines these steps in code and can automate both the steps and the flow between them.
+
+A RAP can allow another person to understand:
+
+- which data were used as well as the vintage;
+- which version of the code was run;
+- what configuration was applied;
+- what checks were completed and the status of those checks;
+- what manual amendments were made to data;
+- information on the methdology and data quality, along with decisions made.
+
+## Manual process and RAP
+
+The following diagram shows the main difference.
+ 
+```{mermaid}
+flowchart TB
+subgraph manual["Manual analytical process"]
+direction LR
+M1["Files and spreadsheets"] --> M2["Manual activities"]
+M2 --> M3["Separate checks"]
+M3 --> M4["Statistical output"]
+end
+ 
+subgraph rap["Reproducible analytical pipeline"]
+direction LR
+R1["Defined inputs"] --> R2["Version-controlled code"]
+R2 --> R3["Automated checks"]
+R3 --> R4["Recorded output"]
+end
+```
+
+A RAP does not mean that every activity must be fully automated. In practise, a statistician may need to:
+
+- investigate an unusual change in the input data or final outputs;
+- take a judgement on whether the data need to be adjusted;
+- select or approve an amendment to a statistical method or parameters;
+- undertake analysis in advance of approving statistics for production.
+
+However, a RAP can help make these interventions safe, auditable and reproducible.
+
+::: {.callout-tip}
+## Automate repeatable activity, not expert judgement
+ 
+Use automation for activities that cen be reliably repeated.
+ 
+Keep human control where statistical expertise, interpretation or formal approval is necessary.
+ 
+But crucially, keep a clear record of any human intervention and its effect on the output.
+:::
+
+## The main RAP practices
+
+The following section outlines some of the high level good practises applied to RAPs. For more detail the [Quality assurance of code for analysis and research] (https://best-practice-and-impact.github.io/qa-of-code-guidance/intro.html#), or the Duck Book, is an excellent resource.
+
+### Define the analysis in code
+
+Data processing, analysis, checks and the production of outputs are all defined in code. This reduces the need for manual processes that are time consuming, difficult to record and repeat, and at risk of human error.
+
+### Use version control
+
+Code, configuration and documentation are stored in a version-control system, such as Git.
+
+Version control provides a record of:
+
+- what has changed;
+- when it changed;
+- why it changed;
+- who made the change.
+
+It also helps a team review a change before using it in production.
+
+### Test the code
+
+Automated tests can check that parts of the pipeline, and the end-to-end connections, behave as expected.
+
+Tests can check:
+
+- individual processing steps;
+- the processing rules;
+- relationships between pipeline stages; and
+- the structure of inputs and outputs
+
+Tests do not prove that the output statistics are correct. They provide additional assurance that the code is defining the process in the way that the team expect.
+
+### Validate the data
+
+Automated checks can be run on specific datasets in the RAP to identify:
+
+- missing values;
+- duplicate records;
+- missing fields;
+- unexpected categories;
+- incorrect data types;
+- values outside an expected range; and
+- unusual changes between production rounds.
+
+The pipeline can make clear whether a check:
+
+- passes;
+- flags a warning for the team to review; or
+- stops the pipeline and directs the team to where the problem is.
+

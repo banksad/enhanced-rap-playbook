@@ -150,6 +150,16 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#in-one-minute" id="toc-in-one-minute" class="nav-link active" data-scroll-target="#in-one-minute"><span class="header-section-number">2.1</span> In one minute</a></li>
   <li><a href="#from-data-to-a-statistical-output" id="toc-from-data-to-a-statistical-output" class="nav-link" data-scroll-target="#from-data-to-a-statistical-output"><span class="header-section-number">2.2</span> From data to a statistical output</a></li>
+  <li><a href="#rap-and-the-production-of-statistics" id="toc-rap-and-the-production-of-statistics" class="nav-link" data-scroll-target="#rap-and-the-production-of-statistics"><span class="header-section-number">2.3</span> RAP and the production of statistics</a></li>
+  <li><a href="#why-use-rap" id="toc-why-use-rap" class="nav-link" data-scroll-target="#why-use-rap"><span class="header-section-number">2.4</span> Why use RAP?</a></li>
+  <li><a href="#manual-process-and-rap" id="toc-manual-process-and-rap" class="nav-link" data-scroll-target="#manual-process-and-rap"><span class="header-section-number">2.5</span> Manual process and RAP</a></li>
+  <li><a href="#the-main-rap-practices" id="toc-the-main-rap-practices" class="nav-link" data-scroll-target="#the-main-rap-practices"><span class="header-section-number">2.6</span> The main RAP practices</a>
+  <ul class="collapse">
+  <li><a href="#define-the-analysis-in-code" id="toc-define-the-analysis-in-code" class="nav-link" data-scroll-target="#define-the-analysis-in-code"><span class="header-section-number">2.6.1</span> Define the analysis in code</a></li>
+  <li><a href="#use-version-control" id="toc-use-version-control" class="nav-link" data-scroll-target="#use-version-control"><span class="header-section-number">2.6.2</span> Use version control</a></li>
+  <li><a href="#test-the-code" id="toc-test-the-code" class="nav-link" data-scroll-target="#test-the-code"><span class="header-section-number">2.6.3</span> Test the code</a></li>
+  <li><a href="#validate-the-data" id="toc-validate-the-data" class="nav-link" data-scroll-target="#validate-the-data"><span class="header-section-number">2.6.4</span> Validate the data</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -186,7 +196,7 @@ ul.task-list li input[type="checkbox"] {
 <li>documentation; and</li>
 <li>outputs.</li>
 </ul>
-<p>The aim is to create a process that is reproducible, auditable, efficient and easy to quality assure.</p>
+<p>It uses practises from software engineering to make an analytical process reproducible, auditable, efficient and easy to quality assure.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -197,32 +207,226 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A RAP replaces repeated manual activities with a process defined in code.</p>
-<p>The code records what the process does. Version control records how the process has changes. Automated checks help people confirm that the process and its outputs are working as expected.</p>
+<p>A RAP replaces repeated manual activities with a process that is defined in code.</p>
+<p>The code records what the process does. Version control records how the process has changed. Automated checks help people confirm that the process and its outputs are working as expected.</p>
 </div>
 </div>
 </section>
 <section id="from-data-to-a-statistical-output" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="from-data-to-a-statistical-output"><span class="header-section-number">2.2</span> From data to a statistical output</h2>
-<p>A RAP is a sequence of steps that turns source data into a statistics product.</p>
+<p>A RAP is a sequence of connected steps that turns source data into a statistical or analytical product.</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
 <p></p><figure class="figure"><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart LR
-  A["Source data"] --&gt; B["Validate"]
-  B --&gt; C["Clean and transform"]
-  C --&gt; D["Quality assure"]
-  D --&gt; E["Disseminate"]
+A["Source data"] --&gt; B["Validate"]
+B --&gt; C["Clean and transform"]
+C --&gt; D["Analyse"]
+D --&gt; E["Quality assure"]
+E --&gt; F["Produce outputs"]
+&nbsp;
+classDef input fill:#e8f1f5,stroke:#003c57,color:#222222
+classDef process fill:#ffffff,stroke:#206095,color:#222222
+classDef output fill:#e5f5f5,stroke:#00a3a6,color:#222222
+&nbsp;
+class A input
+class B,C,D,E process
+class F output
 </pre>
 </div>
 <p></p></figure><p></p>
 </div>
 </div>
 </div>
+<p>The outputs of a RAP could be:</p>
+<ul>
+<li>a set of official statistics;</li>
+<li>a dataset;</li>
+<li>a set of tables;</li>
+<li>a set of charts;</li>
+<li>an interactive dashboard;</li>
+<li>a report;</li>
+<li>a machine-readable output for another system.</li>
+</ul>
+<p>A RAP can support one-off analysis, a regular publication, or part of a statistical production system.</p>
+</section>
+<section id="rap-and-the-production-of-statistics" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="rap-and-the-production-of-statistics"><span class="header-section-number">2.3</span> RAP and the production of statistics</h2>
+<p>The <a href="https://unece.github.io/GSBPM-5.2/#process-phase">Generic Statistical Business Process Model version 5.2</a>, or GSBPM, provides a common framework for describing how official statistics are produced.</p>
+<p>GSBPM describes eight broad phases: &nbsp; 1. Specify needs. 2. Design. 3. Build. 4. Collect. 5. Process. 6. Analyse. 7. Disseminate. 8. Evaluate.</p>
+<p>A RAP can automate and connect activities within one phase or across several phases.</p>
+<p>For example, a production RAP could: &nbsp; - receive data from an approved source; - check that the data have the expected structure; - clean and transform the data; - produce statistical estimates; - apply automated quality checks; - create publication tables and datasets; and - prepare outputs for dissemination.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+A["Specify needs"] --&gt; B["Design"]
+B --&gt; C["Build"]
+C --&gt; D["Collect"]
+D --&gt; E["Process"]
+E --&gt; F["Analyse"]
+F --&gt; G["Disseminate"]
+G --&gt; H["Evaluate"]
+H -. "Learn and improve" .-&gt; A
+&nbsp;
+classDef context fill:#f5f5f5,stroke:#414042,color:#222222
+classDef rap fill:#e5f5f5,stroke:#00a3a6,stroke-width:3px,color:#222222
+&nbsp;
+class A,B,C,H context
+class D,E,F,G rap
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>This example highlights Collect, Process, Analyse and Disseminate. This is only an illustration. The boundary of a RAP depends on the statistical process.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>GSBPM is not a fixed sequence
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>&nbsp; GSBPM is a reference model. It does not require every activity to happen once or in a fixed order. &nbsp; Activities can happen in parallel. A team can repeat an activity, return to an earlier activity, or omit an activity when it is not needed. &nbsp; A RAP must support the statistics production process. A team should not change their business process just to make it fit a linear pipeline.</p>
+</div>
+</div>
+<p>The GSBPM also identifies activities that apply across statistical production. These include quality management, metadata management, data management and knowledge management.</p>
+</section>
+<section id="why-use-rap" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="why-use-rap"><span class="header-section-number">2.4</span> Why use RAP?</h2>
+<p>The production of statistics can contain activities including:</p>
+<ul>
+<li>copying and pasting data;</li>
+<li>moving files between folders;</li>
+<li>manipulating spreadsheets;</li>
+<li>running scripts in a specific order;</li>
+<li>changing settings by hand;</li>
+<li>producing tables and charts;</li>
+<li>completing a set of quality and data checks;</li>
+<li>keeping local records of assumptions, decisions and information about the data and methodology used to produce the statistics;</li>
+</ul>
+<p>These types of activities can make the statistics process difficult to repeat, check and maintain. They can also make the process dependent on the knowledge of an individual.</p>
+<p>By contrast, a RAP defines these steps in code and can automate both the steps and the flow between them.</p>
+<p>A RAP can allow another person to understand:</p>
+<ul>
+<li>which data were used as well as the vintage;</li>
+<li>which version of the code was run;</li>
+<li>what configuration was applied;</li>
+<li>what checks were completed and the status of those checks;</li>
+<li>what manual amendments were made to data;</li>
+<li>information on the methdology and data quality, along with decisions made.</li>
+</ul>
+</section>
+<section id="manual-process-and-rap" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="manual-process-and-rap"><span class="header-section-number">2.5</span> Manual process and RAP</h2>
+<p>The following diagram shows the main difference. &nbsp;</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+subgraph manual["Manual analytical process"]
+direction LR
+M1["Files and spreadsheets"] --&gt; M2["Manual activities"]
+M2 --&gt; M3["Separate checks"]
+M3 --&gt; M4["Statistical output"]
+end
+&nbsp;
+subgraph rap["Reproducible analytical pipeline"]
+direction LR
+R1["Defined inputs"] --&gt; R2["Version-controlled code"]
+R2 --&gt; R3["Automated checks"]
+R3 --&gt; R4["Recorded output"]
+end
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>A RAP does not mean that every activity must be fully automated. In practise, a statistician may need to:</p>
+<ul>
+<li>investigate an unusual change in the input data or final outputs;</li>
+<li>take a judgement on whether the data need to be adjusted;</li>
+<li>select or approve an amendment to a statistical method or parameters;</li>
+<li>undertake analysis in advance of approving statistics for production.</li>
+</ul>
+<p>However, a RAP can help make these interventions safe, auditable and reproducible.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Automate repeatable activity, not expert judgement
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>&nbsp; Use automation for activities that cen be reliably repeated. &nbsp; Keep human control where statistical expertise, interpretation or formal approval is necessary. &nbsp; But crucially, keep a clear record of any human intervention and its effect on the output.</p>
+</div>
+</div>
+</section>
+<section id="the-main-rap-practices" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="the-main-rap-practices"><span class="header-section-number">2.6</span> The main RAP practices</h2>
+<p>The following section outlines some of the high level good practises applied to RAPs. For more detail the [Quality assurance of code for analysis and research] (https://best-practice-and-impact.github.io/qa-of-code-guidance/intro.html#), or the Duck Book, is an excellent resource.</p>
+<section id="define-the-analysis-in-code" class="level3" data-number="2.6.1">
+<h3 data-number="2.6.1" class="anchored" data-anchor-id="define-the-analysis-in-code"><span class="header-section-number">2.6.1</span> Define the analysis in code</h3>
+<p>Data processing, analysis, checks and the production of outputs are all defined in code. This reduces the need for manual processes that are time consuming, difficult to record and repeat, and at risk of human error.</p>
+</section>
+<section id="use-version-control" class="level3" data-number="2.6.2">
+<h3 data-number="2.6.2" class="anchored" data-anchor-id="use-version-control"><span class="header-section-number">2.6.2</span> Use version control</h3>
+<p>Code, configuration and documentation are stored in a version-control system, such as Git.</p>
+<p>Version control provides a record of:</p>
+<ul>
+<li>what has changed;</li>
+<li>when it changed;</li>
+<li>why it changed;</li>
+<li>who made the change.</li>
+</ul>
+<p>It also helps a team review a change before using it in production.</p>
+</section>
+<section id="test-the-code" class="level3" data-number="2.6.3">
+<h3 data-number="2.6.3" class="anchored" data-anchor-id="test-the-code"><span class="header-section-number">2.6.3</span> Test the code</h3>
+<p>Automated tests can check that parts of the pipeline, and the end-to-end connections, behave as expected.</p>
+<p>Tests can check:</p>
+<ul>
+<li>individual processing steps;</li>
+<li>the processing rules;</li>
+<li>relationships between pipeline stages; and</li>
+<li>the structure of inputs and outputs</li>
+</ul>
+<p>Tests do not prove that the output statistics are correct. They provide additional assurance that the code is defining the process in the way that the team expect.</p>
+</section>
+<section id="validate-the-data" class="level3" data-number="2.6.4">
+<h3 data-number="2.6.4" class="anchored" data-anchor-id="validate-the-data"><span class="header-section-number">2.6.4</span> Validate the data</h3>
+<p>Automated checks can be run on specific datasets in the RAP to identify:</p>
+<ul>
+<li>missing values;</li>
+<li>duplicate records;</li>
+<li>missing fields;</li>
+<li>unexpected categories;</li>
+<li>incorrect data types;</li>
+<li>values outside an expected range; and</li>
+<li>unusual changes between production rounds.</li>
+</ul>
+<p>The pipeline can make clear whether a check:</p>
+<ul>
+<li>passes;</li>
+<li>flags a warning for the team to review; or</li>
+<li>stops the pipeline and directs the team to where the problem is.</li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
